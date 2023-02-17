@@ -174,8 +174,8 @@ function SideMenu () {
                             <MenuItem icon={<GroupAddIcon />} component={<Link to="/visits" />}>
                                 Manage Visits                            
                             </MenuItem>                            
-                            <MenuItem icon={<ManageAccountsIcon />} component={<Link to="/user-profile" />}>
-                                Profile User
+                            <MenuItem icon={<ManageAccountsIcon />} component={<Link to="/visits-list" />}>
+                                All Visits
                             </MenuItem>
                         </Menu>
 

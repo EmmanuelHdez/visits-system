@@ -6,8 +6,8 @@ import { Routes, Route } from "react-router-dom";
 import { ProSidebarProvider } from 'react-pro-sidebar';
 import { Dashboard } from './views/dashboard';
 import InventoryView from './views/inventory';
-
 import { Visits } from './views/visits';
+import { ListVisits } from './views/visits/detailed/listVisits';
 
 
 
@@ -27,6 +27,9 @@ function App() {
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/inventory" element={<InventoryView />} />
+                
+
+                <Route path="/visits-list" element={<ListVisits />} />
                 <Route path="/visits" element={<Visits />} />
               </Routes>
 

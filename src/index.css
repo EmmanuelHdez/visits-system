@@ -36,3 +36,10 @@ html, body, #root, .body, .content {
   @apply text-blue-500 transform -translate-y-[1.2rem] -translate-x-2 scale-75;
 }
 
+.custm-radius {
+    border-radius: 5px 0 0 5px;
+}
+
+.custm-radius-last {
+    border-radius: 0 5px 5px 0;
+}
