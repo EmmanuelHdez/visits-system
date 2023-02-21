@@ -10,10 +10,8 @@ export default function InventoryView () {
 
 
     return (
-        <div className="m-[20px]">
-            <div className="flex justify-between align-middle">
-                <Heading title="MANAGE INVENTORY" subtitle="Manage the inventory!" icon={<ImportantDevicesIcon className="w-[45px] h-[45px]"/>}/>
-            </div>
+        <div className="flex justify-between align-middle">
+            <Heading title="MANAGE INVENTORY" subtitle="Manage the inventory!" icon={<ImportantDevicesIcon className="w-[35px] h-[35px]" />} />
         </div>
     )
 }

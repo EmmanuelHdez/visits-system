@@ -10,8 +10,75 @@ import { CardVehicles } from "./cards/vehicles";
 
 
 
+function NameComponent (props) {
+  const [itemName, setItemName] = useState("");
+
+  /* Manage the value of the onchange event */
+
+  const handleInputType = (event) => { 
+    setItemName(event.target.value);
+  }
+  console.log(itemName)
+
+  const handleAddButton = () => {
+    if(itemName !== "") {
+      props.addItemList({
+        id: Date.now(),
+        name: itemName
+      })
+      setItemName("")
+    }
+  }
+
+  return (
+    <>
+      <label className="relative cursor-pointer flex-1">
+        <input
+          type="text"
+          placeholder="Input"
+          value={itemName}
+          onChange={handleInputType}
+          className="gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] placeholder-gray-300 placeholder-opacity-0 transition duration-200"
+        />
+        <span className="text-[11px] text-gray-400 text-opacity-80 bg-white absolute left-3 top-[10px] transition duration-200 input-text">
+          Nombre
+        </span>
+      </label>
+
+      <div className="flex justify-center items-center cursor-pointer" onClick={handleAddButton}>
+        <span className="text-[#5E62FF]">
+          <AddCircleIcon className="w-[20px] h-[20px]" />
+        </span>
+      </div>
+    </>
+  )  
+}
+
+
 
 export function FormVisits() {
+
+  {/* Initial State of Date Input  */}
+  const [value, setValue] = useState({
+    $d: new Date(),
+  });
+
+
+  {/* State of array list elements */}
+  const [list, setList] = useState([]);
+
+  const addItemList = (item) => {
+    setList([...list, item])
+    console.log(list);
+    
+  }
+
+  const deleteitemList = (index) => {
+    const nList = [...list];
+    nList.splice(index, 1);
+    setList(nList);
+  }
+
   const renderDateInput = ({ inputRef, inputProps, InputProps }) => {
     return (
       <>
@@ -40,9 +107,7 @@ export function FormVisits() {
     );
   };
 
-  const [value, setValue] = useState({
-    $d: new Date(),
-  });
+  
 
   console.log(new Date(value?.$d).toISOString(), 11111);
 
@@ -70,24 +135,16 @@ export function FormVisits() {
                       Nombres visitas <span className="text-red-500">*</span>
                     </div>
 
-                    <div className="flex items-center space-x-2">
-                      <label className="relative cursor-pointer flex-1">
-                        <input
-                          type="text"
-                          placeholder="Input"
-                          className="gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] placeholder-gray-300 placeholder-opacity-0 transition duration-200"
-                        />
-                        <span className="text-[11px] text-gray-400 text-opacity-80 bg-white absolute left-3 top-[10px] transition duration-200 input-text">
-                          Nombre
-                        </span>
-                      </label>
+                    
 
-                      <div className="flex justify-center items-center cursor-pointer">
-                        <span className="text-[#5E62FF]">
-                          <AddCircleIcon className="w-[20px] h-[20px]" />
-                        </span>
-                      </div>
+                    <div className="flex items-center space-x-2">
+
+                      {/* Name */}
+                      
+                      <NameComponent addItemList={addItemList}/>
+
                     </div>
+
                   </div>
 
                   <div className="mt-4">

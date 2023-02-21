@@ -1,4 +1,5 @@
 import { Heading } from "../../../components/Heading"
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
@@ -87,7 +88,7 @@ const TableView = ({dataTable, rowsPerPage}) => {
     
         <>
     
-        <table className="border-spacing-x-0 border-spacing-y-[15px] border-separate w-full max-w-[100%] mb-[1rem] text-sm">
+        <table className="border-spacing-x-0 border-spacing-y-[15px] border-separate w-full max-w-[100%] mb-2 text-sm">
             <thead className="text-gray-500">
                 <tr className="text-[13px]">
                     <th className="align-middle border-none">
@@ -179,10 +180,10 @@ export function ListVisits() {
             {/* HEADING LIST VISITS */}
 
             <div className="flex justify-between align-middle">
-                <Heading title="MANAGE VISITS" subtitle="Manage all the booked visits!" icon={<PermContactCalendarIcon className="w-[45px] h-[45px]" />} />
+                <Heading title="VISITS LIST" subtitle="Visualize all the booked visits!" icon={<RecentActorsIcon className="w-[35px] h-[35px]" />} />
             </div>
 
-            <div className="flex flex-col bg-indigo-50 mx-[2rem] rounded-xl mt-8 flex-1 pb-2">
+            <div className="flex flex-col bg-indigo-50 mx-[2rem] rounded-xl flex-1 pb-2">
 
                 {/* Toolbar buttons */}
                 <div className="flex justify-between relative items-center px-7 py-4 border-b-2 border-gray-300">

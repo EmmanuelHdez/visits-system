@@ -8,15 +8,13 @@ export function Visits() {
     return (
         <>
             {/* HEADING VISITS */}
-            
+
             <div className="flex justify-between align-middle">
-                <Heading title="MANAGE VISITS" subtitle="Manage all the booked visits!" icon={<PermContactCalendarIcon className="w-[45px] h-[45px]"/>}/>
+                <Heading title="MANAGE VISITS" subtitle="Manage all the booked visits!" icon={<PermContactCalendarIcon className="w-[35px] h-[35px]" />} />
             </div>
             
 
-            
-
-            <div className="flex flex-col bg-indigo-50 mx-[2rem] rounded-xl mt-8 flex-1">
+            <div className="flex flex-col bg-indigo-50 mx-[2rem] rounded-xl flex-1">
 
                 {/* Toolbar buttons */}
                 <div className="flex justify-between relative items-center px-7 py-4 border-b-2 border-gray-300">
