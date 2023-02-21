@@ -7,7 +7,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import {useLocation,useNavigate} from "react-router-dom"
 
 function Topbar () {
-    const state = useLocation();
     const naviagate= useNavigate();
     const nav = useLocation();
 
