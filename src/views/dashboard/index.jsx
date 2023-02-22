@@ -1,7 +1,5 @@
 import { Heading } from "../../components/Heading"
 import HomeIcon from '@mui/icons-material/Home';
-import { useState, useContext } from 'react';
-
 
 
 

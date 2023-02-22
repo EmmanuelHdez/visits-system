@@ -10,23 +10,29 @@ import { CardVehicles } from "./cards/vehicles";
 
 
 
-function NameComponent (props) {
+function NameComponent(props) {
   const [itemName, setItemName] = useState("");
+  const [outline, setOutline] = useState(false);
 
   /* Manage the value of the onchange event */
 
-  const handleInputType = (event) => { 
+  const handleInputType = (event) => {
     setItemName(event.target.value);
   }
-  
+
   const handleAddButton = () => {
-    if(itemName !== "") {
+    if (itemName !== "") {
       props.addItemList({
         id: Date.now(),
         name: itemName
       })
       setItemName("")
+      setOutline(false)
+    } else {
+      setOutline(true);
     }
+
+
   }
 
   return (
@@ -37,7 +43,7 @@ function NameComponent (props) {
           placeholder="Input"
           value={itemName}
           onChange={handleInputType}
-          className="gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] placeholder-gray-300 placeholder-opacity-0 transition duration-200"
+          className={`${outline ? "border-red-500 focus:border-red-500" : null} gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] placeholder-gray-300 placeholder-opacity-0 transition duration-200`}
         />
         <span className="text-[11px] text-gray-400 text-opacity-80 bg-white absolute left-3 top-[10px] transition duration-200 input-text">
           Nombre
@@ -50,32 +56,37 @@ function NameComponent (props) {
         </span>
       </div>
     </>
-  )  
+  )
 }
 
 
 
 export function FormVisits() {
 
-  {/* Initial State of Date Input  */}
-  const [value, setValue] = useState({
-    $d: new Date(),
-  });
+  /* Initial State of Date Input  */
+  const [value, setValue] = useState({ $d: new Date() });
 
 
-  {/* State of array list elements */}
+  /* State of array list elements */
   const [list, setList] = useState([]);
 
   const addItemList = (item) => {
     setList([...list, item])
-    console.log(list);
-    
+    console.log(list, "añadido")
   }
 
-  const deleteitemList = (index) => {
+  const editItemList = (index, newValue) => {
+    const nList = [...list]
+    nList[index].name = newValue
+    setList(nList)
+    console.log(list, "editado")
+  }
+
+  const deleteItemList = (index) => {
     const nList = [...list];
     nList.splice(index, 1);
     setList(nList);
+    console.log(list, "deleteado")
   }
 
   const renderDateInput = ({ inputRef, inputProps, InputProps }) => {
@@ -106,7 +117,7 @@ export function FormVisits() {
     );
   };
 
-  
+
 
   console.log(new Date(value?.$d).toISOString(), 11111);
 
@@ -134,13 +145,13 @@ export function FormVisits() {
                       Nombres visitas <span className="text-red-500">*</span>
                     </div>
 
-                    
+
 
                     <div className="flex items-center space-x-2">
 
                       {/* Name */}
-                      
-                      <NameComponent addItemList={addItemList}/>
+
+                      <NameComponent addItemList={addItemList} />
 
                     </div>
 
@@ -271,10 +282,10 @@ export function FormVisits() {
 
       {/* Section Names & Vehicles */}
 
-        <div className="flex flex-1 flex-col justify-end items-stretch space-y-2">
-            <CardNames list={list} deleteitemList={deleteitemList}/>        
-            <CardVehicles/>
-        </div>
+      <div className="flex flex-1 flex-col justify-end items-stretch space-y-2">
+        <CardNames list={list} deleteItemList={deleteItemList} editItemList={editItemList} />
+        <CardVehicles />
+      </div>
     </div>
   );
 }

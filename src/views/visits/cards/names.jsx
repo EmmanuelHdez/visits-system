@@ -6,43 +6,25 @@ import { useState } from "react";
 
 
 
-const EditInputDelete = () => {
-    
-    const [isDisabled, setIsDisabled] = useState(true);
-
-    return (
-        <>
-       
-            <label className="relative cursor-pointer flex-1">
-                <input
-                    disabled={isDisabled}
-                    type="text"
-                    placeholder="Input"
-                    className="gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] transition duration-200 disabled:placeholder-gray-400 disabled:bg-slate-50 disabled:text-gray-400"
-                />
-            </label>
-            <div className="flex justify-center items-center cursor-pointer space-x-1">
-                <span className="text-gray-400 opacity-50" onClick={() => setIsDisabled(!isDisabled)}>
-                    { isDisabled ?  
-                        <EditIcon className="w-[18px] h-[18px]"/> 
-                        : 
-                        <CheckBoxIcon className="w-[18px] h-[18px]"/> 
-                    }                                            
-                </span>
-                <span className="text-[#5E62FF]">
-                    <DeleteIcon className="w-[18px] h-[18px]" />
-                </span>
-            </div>
-        </>        
-    )
-}
-
-
 export function CardNames(props) {
 
-    const [isDisabled, setIsDisabled] = useState(true);
+    const [editIndex, setEditIndex] = useState(-1);
+    const [editName, setEditName] = useState("");
 
-    
+    const handleChangeInput = (event) => {
+        setEditName(event.target.value);
+    }
+
+    const handleEditBtn = (index) => { 
+        setEditIndex(index);
+        setEditName(props.list[index].name)
+    }
+
+    const handleSaveBtn = (index) => { 
+        props.editItemList(index, editName);
+        setEditIndex(-1);
+    }
+        
 
     return (
         <div className="bg-white shadow rounded-xl flex-1 w-full flex flex-col overflow-hidden">
@@ -65,29 +47,54 @@ export function CardNames(props) {
 
                         {props.list.map((item, index) => (
                             <li className="flex items-center space-x-1" key={index}>
-                                <label className="relative cursor-pointer flex-1">
-                                    <input
-                                        value={item.name}
-                                        disabled={isDisabled}
-                                        type="text"
-                                        placeholder="Input"
-                                        className="gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] transition duration-200 disabled:placeholder-gray-400 disabled:bg-slate-50 disabled:text-gray-400"
-                                    />
-                                </label>
 
-                                <div className="flex justify-center items-center cursor-pointer space-x-1">
-                                    <span className="text-gray-400 opacity-50" onClick={() => setIsDisabled(!isDisabled)}>
-                                        { isDisabled ?  
-                                            <EditIcon className="w-[18px] h-[18px]"/> 
-                                            : 
-                                            <CheckBoxIcon className="w-[18px] h-[18px]"/> 
-                                        }                                            
-                                    </span>
-                                    <span className="text-[#5E62FF]" onClick={() => props.deleteitemList(index)}>
-                                        <DeleteIcon className="w-[18px] h-[18px]" />
-                                    </span>
-                                </div>
-                                
+                                {editIndex === index ? (
+                                    <>
+                                        <label className="relative cursor-pointer flex-1">
+                                            <input
+                                                value={editName}
+                                                onChange={handleChangeInput}                                            
+                                                type="text"
+                                                placeholder="Input"
+                                                className="gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] transition duration-200 disabled:placeholder-gray-400 disabled:bg-slate-50 disabled:text-gray-400"
+                                            />
+                                        </label>
+
+                                        <div className="flex justify-center items-center cursor-pointer space-x-1">
+                                            <span className="text-gray-400 opacity-50" onClick={() => handleSaveBtn(index)}>
+                                                <CheckBoxIcon className="w-[18px] h-[18px]"/>
+                                            </span>
+                                            <span className="text-[#5E62FF] cursor-not-allowed	">
+                                                <DeleteIcon className="w-[18px] h-[18px]" />
+                                            </span>
+                                        </div>
+                                    </>
+                                    
+                                ) : (
+
+                                    <>
+                                        <label className="relative cursor-pointer flex-1">
+                                            <input
+                                                value={item.name}
+                                                disabled                                            
+                                                type="text"
+                                                placeholder="Input"
+                                                className="gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] transition duration-200 disabled:placeholder-gray-400 disabled:bg-slate-50 disabled:text-gray-400"
+                                            />
+                                        </label>
+
+                                        <div className="flex justify-center items-center cursor-pointer space-x-1">
+                                            <span className="text-gray-400 opacity-50" onClick={() => handleEditBtn(index)}>
+                                                <EditIcon className="w-[18px] h-[18px]"/>
+                                            </span>
+                                            <span className="text-[#5E62FF]" onClick={() => props.deleteItemList(index)}>
+                                                <DeleteIcon className="w-[18px] h-[18px]" />
+                                            </span>
+                                        </div>
+                                    </>
+
+                                    
+                                )}
                             </li>
                         ))}
 
