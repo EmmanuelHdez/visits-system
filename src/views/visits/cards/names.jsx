@@ -6,7 +6,7 @@ import { useState } from "react";
 
 
 
-const EditInput = () => {
+const EditInputDelete = () => {
     
     const [isDisabled, setIsDisabled] = useState(true);
 
@@ -38,8 +38,9 @@ const EditInput = () => {
 }
 
 
-export function CardNames() {
+export function CardNames(props) {
 
+    const [isDisabled, setIsDisabled] = useState(true);
 
     
 
@@ -61,13 +62,38 @@ export function CardNames() {
             <div className="flex flex-col flex-1 overflow-hidden">
                 <div className="flex-1 flex overflow-hidden">
                     <ul className="w-full h-full  overflow-y-scroll flex flex-col space-y-2 px-2 py-2">
-                        {Array(2).fill(0).map((e, i) => {
-                            return (
-                                <li className="flex items-center space-x-1" key={i}>
-                                    <EditInput/>
-                                </li>                                
-                            )
-                        })}
+
+                        {props.list.map((item, index) => (
+                            <li className="flex items-center space-x-1" key={index}>
+                                <label className="relative cursor-pointer flex-1">
+                                    <input
+                                        value={item.name}
+                                        disabled={isDisabled}
+                                        type="text"
+                                        placeholder="Input"
+                                        className="gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] transition duration-200 disabled:placeholder-gray-400 disabled:bg-slate-50 disabled:text-gray-400"
+                                    />
+                                </label>
+
+                                <div className="flex justify-center items-center cursor-pointer space-x-1">
+                                    <span className="text-gray-400 opacity-50" onClick={() => setIsDisabled(!isDisabled)}>
+                                        { isDisabled ?  
+                                            <EditIcon className="w-[18px] h-[18px]"/> 
+                                            : 
+                                            <CheckBoxIcon className="w-[18px] h-[18px]"/> 
+                                        }                                            
+                                    </span>
+                                    <span className="text-[#5E62FF]" onClick={() => props.deleteitemList(index)}>
+                                        <DeleteIcon className="w-[18px] h-[18px]" />
+                                    </span>
+                                </div>
+                                
+                            </li>
+                        ))}
+
+                       
+
+
                     </ul>
                 </div>
             </div>

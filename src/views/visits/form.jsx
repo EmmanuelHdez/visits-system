@@ -18,8 +18,7 @@ function NameComponent (props) {
   const handleInputType = (event) => { 
     setItemName(event.target.value);
   }
-  console.log(itemName)
-
+  
   const handleAddButton = () => {
     if(itemName !== "") {
       props.addItemList({
@@ -273,7 +272,7 @@ export function FormVisits() {
       {/* Section Names & Vehicles */}
 
         <div className="flex flex-1 flex-col justify-end items-stretch space-y-2">
-            <CardNames/>        
+            <CardNames list={list} deleteitemList={deleteitemList}/>        
             <CardVehicles/>
         </div>
     </div>
