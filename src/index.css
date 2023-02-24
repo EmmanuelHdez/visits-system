@@ -49,3 +49,7 @@ html, body, #root, .body, .content {
     color: #ffffff !important;
     
 }
+
+.outlined-empty-input, .outlined-empty-input:focus {
+    border-color:  rgb(239 68 68) !important;
+}

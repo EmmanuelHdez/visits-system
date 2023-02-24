@@ -22,7 +22,7 @@ function NameComponent(props) {
 
   const handleAddButton = () => {
     if (itemName !== "") {
-      props.addItemList({
+      props.addNameList({
         id: Date.now(),
         name: itemName
       })
@@ -43,10 +43,60 @@ function NameComponent(props) {
           placeholder="Input"
           value={itemName}
           onChange={handleInputType}
-          className={`${outline ? "border-red-500 focus:border-red-500" : null} gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] placeholder-gray-300 placeholder-opacity-0 transition duration-200`}
+          className={`${outline ? "outlined-empty-input" : null} gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] placeholder-gray-300 placeholder-opacity-0 transition duration-200`}
         />
         <span className="text-[11px] text-gray-400 text-opacity-80 bg-white absolute left-3 top-[10px] transition duration-200 input-text">
           Nombre
+        </span>
+      </label>
+
+      <div className="flex justify-center items-center cursor-pointer" onClick={handleAddButton}>
+        <span className="text-[#5E62FF]">
+          <AddCircleIcon className="w-[20px] h-[20px]" />
+        </span>
+      </div>
+    </>
+  )
+}
+
+
+function VehicleComponent(props) {
+  const [itemName, setItemName] = useState("");
+  const [outline, setOutline] = useState(false);
+
+  /* Manage the value of the onchange event */
+
+  const handleInputType = (event) => {
+    setItemName(event.target.value);
+  }
+
+  const handleAddButton = () => {
+    if (itemName !== "") {
+      props.addVehicleList({
+        id: Date.now(),
+        name: itemName
+      })
+      setItemName("")
+      setOutline(false)
+    } else {
+      setOutline(true);
+    }
+
+
+  }
+
+  return (
+    <>
+      <label className="relative cursor-pointer flex-1">
+        <input
+          type="text"
+          placeholder="Input"
+          value={itemName}
+          onChange={handleInputType}
+          className={`${outline ? "outlined-empty-input" : null} gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] placeholder-gray-300 placeholder-opacity-0 transition duration-200`}
+        />
+        <span className="text-[11px] text-gray-400 text-opacity-80 bg-white absolute left-3 top-[10px] transition duration-200 input-text">
+          Vehículo
         </span>
       </label>
 
@@ -68,26 +118,50 @@ export function FormVisits() {
 
 
   /* State of array list elements */
-  const [list, setList] = useState([]);
+  const [nameList, setNameList] = useState([]);
 
-  const addItemList = (item) => {
-    setList([...list, item])
-    console.log(list, "añadido")
+  const addNameList = (item) => {
+    setNameList([...nameList, item])
   }
 
-  const editItemList = (index, newValue) => {
-    const nList = [...list]
+  const editNameList = (index, newValue) => {
+    const nList = [...nameList]
     nList[index].name = newValue
-    setList(nList)
-    console.log(list, "editado")
+    setNameList(nList)
   }
 
-  const deleteItemList = (index) => {
-    const nList = [...list];
+  const deleteNameList = (index) => {
+    const nList = [...nameList];
     nList.splice(index, 1);
-    setList(nList);
-    console.log(list, "deleteado")
+    setNameList(nList);
   }
+
+  console.log(nameList, "nameList")
+
+  
+
+
+  /* Vehicles Form */
+
+  const [vehicleList, setVehicleList] = useState([]);
+
+  const addVehicleList = (item) => {
+    setVehicleList([...vehicleList, item])
+  }
+
+  const editVehicleList = (index, newValue) => {
+    const nList = [...vehicleList]
+    nList[index].name = newValue
+    setVehicleList(nList)
+  }
+
+  const deleteVehicleList = (index) => {
+    const nList = [...vehicleList];
+    nList.splice(index, 1);
+    setVehicleList(nList);
+ }
+
+ console.log(vehicleList, "vehicleList");
 
   const renderDateInput = ({ inputRef, inputProps, InputProps }) => {
     return (
@@ -117,10 +191,6 @@ export function FormVisits() {
     );
   };
 
-
-
-  console.log(new Date(value?.$d).toISOString(), 11111);
-
   return (
     <div className="my-4 flex px-5 space-x-5 flex-1">
       <div className="w-[60%] justify-between">
@@ -145,13 +215,11 @@ export function FormVisits() {
                       Nombres visitas <span className="text-red-500">*</span>
                     </div>
 
-
-
                     <div className="flex items-center space-x-2">
 
                       {/* Name */}
 
-                      <NameComponent addItemList={addItemList} />
+                      <NameComponent addNameList={addNameList} />
 
                     </div>
 
@@ -164,22 +232,10 @@ export function FormVisits() {
                     </div>
 
                     <div className="flex items-center space-x-2">
-                      <label className="relative cursor-pointer flex-1">
-                        <input
-                          type="text"
-                          placeholder="Input"
-                          className="gle-input h-[35px] w-full px-3 text-[12px] text-gray-700 bg-white border-gray-400 border rounded-lg border-opacity-50 outline-none focus:border-[#2B92EC] placeholder-gray-300 placeholder-opacity-0 transition duration-200"
-                        />
-                        <span className="text-[11px] text-gray-400 text-opacity-80 bg-white absolute left-3 top-[10px] transition duration-200 input-text">
-                          Vehículo
-                        </span>
-                      </label>
-
-                      <div className="flex justify-center items-center cursor-pointer">
-                        <span className="text-[#5E62FF]">
-                          <AddCircleIcon className="w-[20px] h-[20px]" />
-                        </span>
-                      </div>
+                      
+                      {/* Vehicle */}
+                      
+                      <VehicleComponent addVehicleList={addVehicleList} />
                     </div>
                   </div>
                 </div>
@@ -283,8 +339,8 @@ export function FormVisits() {
       {/* Section Names & Vehicles */}
 
       <div className="flex flex-1 flex-col justify-end items-stretch space-y-2">
-        <CardNames list={list} deleteItemList={deleteItemList} editItemList={editItemList} />
-        <CardVehicles />
+        <CardNames nameList={nameList} deleteNameList={deleteNameList} editNameList={editNameList} />
+        <CardVehicles vehicleList={vehicleList} deleteVehicleList={deleteVehicleList} editVehicleList={editVehicleList}/>
       </div>
     </div>
   );

@@ -6,8 +6,10 @@ import { Routes, Route } from "react-router-dom";
 import { ProSidebarProvider } from 'react-pro-sidebar';
 import { Dashboard } from './views/dashboard';
 import InventoryView from './views/inventory';
-import { Visits } from './views/visits';
+//import { Visits } from './views/visits';
 import { ListVisits } from './views/visits/detailed/listVisits';
+import { Visits } from './views/visits/index-visits';
+
 
 
 

@@ -17,11 +17,11 @@ export function CardNames(props) {
 
     const handleEditBtn = (index) => { 
         setEditIndex(index);
-        setEditName(props.list[index].name)
+        setEditName(props.nameList[index].name)
     }
 
     const handleSaveBtn = (index) => { 
-        props.editItemList(index, editName);
+        props.editNameList(index, editName);
         setEditIndex(-1);
     }
         
@@ -45,7 +45,7 @@ export function CardNames(props) {
                 <div className="flex-1 flex overflow-hidden">
                     <ul className="w-full h-full  overflow-y-scroll flex flex-col space-y-2 px-2 py-2">
 
-                        {props.list.map((item, index) => (
+                        {props.nameList.map((item, index) => (
                             <li className="flex items-center space-x-1" key={index}>
 
                                 {editIndex === index ? (
@@ -87,7 +87,7 @@ export function CardNames(props) {
                                             <span className="text-gray-400 opacity-50" onClick={() => handleEditBtn(index)}>
                                                 <EditIcon className="w-[18px] h-[18px]"/>
                                             </span>
-                                            <span className="text-[#5E62FF]" onClick={() => props.deleteItemList(index)}>
+                                            <span className="text-[#5E62FF]" onClick={() => props.deleteNameList(index)}>
                                                 <DeleteIcon className="w-[18px] h-[18px]" />
                                             </span>
                                         </div>
