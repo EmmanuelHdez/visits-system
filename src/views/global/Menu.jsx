@@ -172,11 +172,11 @@ function SideMenu () {
 
                         <Menu menuItemStyles={menuItemStyles}>
                             <MenuItem icon={<GroupAddIcon />} component={<Link to="/visits" />}>
-                                Manage Visits                            
+                                Visits                            
                             </MenuItem>                            
-                            <MenuItem icon={<ManageAccountsIcon />} component={<Link to="/visits-list" />}>
+                            {/*<MenuItem icon={<ManageAccountsIcon />} component={<Link to="/visits-list" />}>
                                 All Visits
-                            </MenuItem>
+                            </MenuItem>*/}
                         </Menu>
 
 

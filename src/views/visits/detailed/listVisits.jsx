@@ -1,6 +1,5 @@
 import { Heading } from "../../../components/Heading"
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
-import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
