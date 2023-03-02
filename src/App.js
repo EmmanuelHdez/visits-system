@@ -8,7 +8,7 @@ import { Dashboard } from './views/dashboard';
 import InventoryView from './views/inventory';
 //import { Visits } from './views/visits';
 //import { ListVisits } from './views/visits/detailed/listVisits';
-import { VisitsIndex } from './views/visits/index-visits';
+import { Visits } from './views/visits/index-visits';
 
 
 
@@ -24,7 +24,7 @@ function App() {
             <SideMenu/>
           </ProSidebarProvider>
 
-          <main className='content flex flex-col pb-4'>
+          <main className='content flex flex-col'>
               <Topbar/>
 
               <Routes>
@@ -34,7 +34,7 @@ function App() {
 
                 {/*<Route path="/visits-list" element={<ListVisits />} />*/}
 
-                <Route path="/visits" element={<VisitsIndex />} />
+                <Route path="/visits" element={<Visits/>} />
               </Routes>
 
           </main>

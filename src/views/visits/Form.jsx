@@ -111,7 +111,7 @@ function VehicleComponent(props) {
 
 
 
-export function FormVisits() {
+export function VisitsForm() {
 
   /* Initial State of Date Input  */
   const [value, setValue] = useState({ $d: new Date() });
